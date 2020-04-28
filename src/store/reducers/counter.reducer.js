@@ -1,12 +1,11 @@
 import cloneDeep from "lodash.clonedeep";
-import * as actionTypes from "./actions";
+import * as actionTypes from "../actions";
 
 const initialState = {
   counter: 0,
-  results: [],
 };
 
-const reducer = (state = initialState, action) => {
+const counterReducer = (state = initialState, action) => {
   const newState = cloneDeep(state);
 
   switch (action.type) {
@@ -26,22 +25,9 @@ const reducer = (state = initialState, action) => {
       newState.counter = state.counter - action.value;
       return newState;
 
-    case actionTypes.STORE_RESULT:
-      newState.results = state.results.concat({
-        id: new Date(),
-        storedValue: state.counter,
-      });
-      return newState;
-
-    case actionTypes.DELETE_RESULT:
-      newState.results = state.results.filter(
-        (result) => result.id !== action.id
-      );
-      return newState;
-
     default:
       return newState;
   }
 };
 
-export default reducer;
+export default counterReducer;
