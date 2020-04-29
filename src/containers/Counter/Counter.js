@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import CounterControl from "../../components/CounterControl/CounterControl";
 import CounterOutput from "../../components/CounterOutput/CounterOutput";
 
-import * as actionTypes from "../../store/actions";
+import * as actionCreators from "../../store/actions/";
 
 class Counter extends Component {
   state = {
@@ -79,15 +79,13 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    onIncrementCounter: () => dispatch({ type: actionTypes.INCREMENT }),
-    onDecrementCounter: () => dispatch({ type: actionTypes.DECREMENT }),
-    onAddFiveToCounter: () => dispatch({ type: actionTypes.ADDFIVE, value: 5 }),
-    onSubtractFiveFromCounter: () =>
-      dispatch({ type: actionTypes.SUBTRACTFIVE, value: 5 }),
-    onStoreResult: (counter) =>
-      dispatch({ type: actionTypes.STORE_RESULT, result: counter }),
+    onIncrementCounter: () => dispatch(actionCreators.increment()),
+    onDecrementCounter: () => dispatch(actionCreators.decrement()),
+    onAddFiveToCounter: () => dispatch(actionCreators.addfive(5)),
+    onSubtractFiveFromCounter: () => dispatch(actionCreators.subtractfive(5)),
+    onStoreResult: (counter) => dispatch(actionCreators.storeResult(counter)),
     onDeleteResult: (resultId) =>
-      dispatch({ type: actionTypes.DELETE_RESULT, id: resultId }),
+      dispatch(actionCreators.deleteResult(resultId)),
   };
 };
 

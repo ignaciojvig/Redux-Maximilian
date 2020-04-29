@@ -1,29 +1,27 @@
-import cloneDeep from "lodash.clonedeep";
-import * as actionTypes from "../actions";
+import * as actionTypes from "../actions/actionTypes";
+import { updatedState } from "../utility";
 
 const initialState = {
   results: [],
 };
 
 const resultReducer = (state = initialState, action) => {
-  const newState = cloneDeep(state);
-
   switch (action.type) {
     case actionTypes.STORE_RESULT:
-      newState.results = state.results.concat({
-        id: new Date(),
-        storedValue: action.result,
+      return updatedState(state, {
+        results: state.results.concat({
+          id: new Date(),
+          storedValue: action.result,
+        }),
       });
-      return newState;
 
     case actionTypes.DELETE_RESULT:
-      newState.results = state.results.filter(
-        (result) => result.id !== action.id
-      );
-      return newState;
+      return updatedState(state, {
+        results: state.results.filter((result) => result.id !== action.id),
+      });
 
     default:
-      return newState;
+      return state  ;
   }
 };
 

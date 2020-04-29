@@ -1,32 +1,26 @@
-import cloneDeep from "lodash.clonedeep";
-import * as actionTypes from "../actions";
+import * as actionTypes from "../actions/actionTypes";
+import { updatedState } from "../utility";
 
 const initialState = {
   counter: 0,
 };
 
 const counterReducer = (state = initialState, action) => {
-  const newState = cloneDeep(state);
-
   switch (action.type) {
     case actionTypes.INCREMENT:
-      newState.counter = state.counter + 1;
-      return newState;
+      return updatedState(state, { counter: state.counter + 1 });
 
     case actionTypes.DECREMENT:
-      newState.counter = state.counter - 1;
-      return newState;
+      return updatedState(state, { counter: state.counter - 1 });
 
     case actionTypes.ADDFIVE:
-      newState.counter = state.counter + action.value;
-      return newState;
+      return updatedState(state, { counter: state.counter + action.value });
 
     case actionTypes.SUBTRACTFIVE:
-      newState.counter = state.counter - action.value;
-      return newState;
+      return updatedState(state, { counter: state.counter - action.value });
 
     default:
-      return newState;
+      return state;
   }
 };
 
