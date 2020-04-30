@@ -31,11 +31,11 @@ export const Counter = () => {
         clicked={() => dispatch(actions.onSubtractFiveFromCounter())}
       />
       <CounterControl
-        label="Add a Random Between 1-10"
+        label="Async Add a Random Between 1-10"
         clicked={() => dispatch(actions.onAddRandomToCounter())}
       />
       <CounterControl
-        label="Subtract a Random Between 1-10"
+        label="Async Subtract a Random Between 1-10"
         clicked={() => dispatch(actions.onSubtractRandomFromCounter())}
       />
       <hr />
