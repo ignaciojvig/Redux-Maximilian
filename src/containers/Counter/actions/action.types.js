@@ -4,3 +4,5 @@ export const ADDFIVE = "ADDFIVE";
 export const SUBTRACTFIVE = "SUBTRACTFIVE";
 export const STORE_RESULT = "STORE_RESULT";
 export const DELETE_RESULT = "DELETE_RESULT";
+export const ADDRANDOM = "ADDRANDOM";
+export const SUBTRACTRANDOM = "SUBTRACTRANDOM";

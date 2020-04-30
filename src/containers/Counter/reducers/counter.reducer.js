@@ -19,6 +19,12 @@ const counterReducer = (state = initialState, action) => {
     case actionTypes.SUBTRACTFIVE:
       return updatedState(state, { counter: state.counter - action.value });
 
+    case actionTypes.ADDRANDOM:
+      return updatedState(state, { counter: state.counter + action.random });
+
+    case actionTypes.SUBTRACTRANDOM:
+      return updatedState(state, { counter: state.counter - action.random });
+
     default:
       return state;
   }
