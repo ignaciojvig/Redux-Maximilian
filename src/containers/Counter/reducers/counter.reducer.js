@@ -1,5 +1,5 @@
-import * as actionTypes from "../actions/actionTypes";
-import { updatedState } from "../utility";
+import * as actionTypes from "../actions/action.types";
+import { updatedState } from "../../../store/utility";
 
 const initialState = {
   counter: 0,
