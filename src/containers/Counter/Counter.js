@@ -3,7 +3,6 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { actions } from "./actions/actions";
 
-import CounterControl from "../../components/CounterControl/CounterControl";
 import CounterOutput from "../../components/CounterOutput/CounterOutput";
 import { Button } from "antd";
 
@@ -16,45 +15,70 @@ export const Counter = () => {
   return (
     <div>
       <CounterOutput value={counterState.counterScore} />
-      <CounterControl
-        label="Increment"
-        clicked={() => dispatch(actions.onIncrementCounter())}
-      />
-      <CounterControl
-        label="Decrement"
-        clicked={() => dispatch(actions.onDecrementCounter())}
-      />
-      <CounterControl
-        label="Add 5"
-        clicked={() => dispatch(actions.onAddFiveToCounter())}
-      />
-      <CounterControl
-        label="Subtract 5"
-        clicked={() => dispatch(actions.onSubtractFiveFromCounter())}
-      />
+
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "space-around",
+          margin: "1em 0",
+        }}
+      >
+        <Button
+          type="primary"
+          onClick={() => dispatch(actions.onIncrementCounter())}
+        >
+          Increment
+        </Button>
+
+        <Button
+          type="primary"
+          onClick={() => dispatch(actions.onDecrementCounter())}
+        >
+          Decrement
+        </Button>
+
+        <Button
+          type="primary"
+          onClick={() => dispatch(actions.onAddFiveToCounter())}
+        >
+          Add 5
+        </Button>
+
+        <Button
+          type="primary"
+          onClick={() => dispatch(actions.onSubtractFiveFromCounter())}
+        >
+          Subtract 5
+        </Button>
+
+        <Button
+          type="primary"
+          loading={counterState.addRandomLoadingState}
+          onClick={() => dispatch(actions.onAddRandomToCounter())}
+        >
+          Async Add a Random Between 1-10
+        </Button>
+
+        <Button
+          type="primary"
+          loading={counterState.subtractRandomLoadingState}
+          onClick={() => dispatch(actions.onSubtractRandomFromCounter())}
+        >
+          Async Subtract a Random Between 1-10
+        </Button>
+      </div>
+
+      <hr />
+
       <Button
         type="primary"
-        loading={counterState.loadingState}
-        onClick={() => dispatch(actions.onAddRandomToCounter())}
-      >
-        Async Add a Random Between 1-10
-      </Button>
-      <CounterControl
-        label="Async Add a Random Between 1-10"
-        clicked={() => dispatch(actions.onAddRandomToCounter())}
-      />
-      <CounterControl
-        label="Async Subtract a Random Between 1-10"
-        clicked={() => dispatch(actions.onSubtractRandomFromCounter())}
-      />
-      <hr />
-      <button
         onClick={() =>
           dispatch(actions.onStoreResult(counterState.counterScore))
         }
       >
         Store Result
-      </button>
+      </Button>
+
       <ul>
         {storedResults.map((x) => (
           <li key={x.id} onClick={() => dispatch(actions.onDeleteResult(x.id))}>

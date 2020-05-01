@@ -3,7 +3,8 @@ import { updateState } from "../../../helpers/";
 
 const initialState = {
   counterScore: 0,
-  loadingState: false,
+  addRandomLoadingState: false,
+  subtractRandomLoadingState: false,
 };
 
 const counterScoreReducer = (state = initialState, action) => {
@@ -15,21 +16,34 @@ const counterScoreReducer = (state = initialState, action) => {
       return updateState(state, { counterScore: state.counterScore - 1 });
 
     case actionTypes.ADDFIVE:
-      return updateState(state, { counterScore: state.counterScore + action.value });
+      return updateState(state, {
+        counterScore: state.counterScore + action.value,
+      });
 
     case actionTypes.SUBTRACTFIVE:
-      return updateState(state, { counterScore: state.counterScore - action.value });
+      return updateState(state, {
+        counterScore: state.counterScore - action.value,
+      });
 
     case actionTypes.ADDRANDOM:
-      return updateState(state, { counterScore: state.counterScore + action.random });
+      return updateState(state, {
+        counterScore: state.counterScore + action.random,
+      });
 
     case actionTypes.ADDRANDOMLOADING:
       return updateState(state, {
-        loadingState: action.loadingState,
+        addRandomLoadingState: action.loadingState,
       });
 
     case actionTypes.SUBTRACTRANDOM:
-      return updateState(state, { counterScore: state.counterScore - action.random });
+      return updateState(state, {
+        counterScore: state.counterScore - action.random,
+      });
+
+    case actionTypes.SUBTRACTRANDOMLOADING:
+      return updateState(state, {
+        subtractRandomLoadingState: action.loadingState,
+      });
 
     default:
       return state;

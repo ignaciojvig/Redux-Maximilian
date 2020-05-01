@@ -23,7 +23,7 @@ export const subtractRandomValue = () => {
   return (dispatch) => {
     from(counterAPIService.getRandomInteger())
       .pipe(
-        loadingHandler(dispatch, actionTypes.ADDRANDOMLOADING),
+        loadingHandler(dispatch, actionTypes.SUBTRACTRANDOMLOADING),
         responseHandler()
       )
       .subscribe((x) => dispatch(subtractRandomValueFromCounter(x)));
