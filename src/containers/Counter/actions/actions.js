@@ -1,4 +1,5 @@
 import * as actionCreators from "./action.creators";
+import * as actionAsyncCreators from "./action.async.creators";
 
 export const actions = {
   onIncrementCounter: () => actionCreators.increment(),
@@ -7,6 +8,7 @@ export const actions = {
   onSubtractFiveFromCounter: () => actionCreators.subtractfive(5),
   onStoreResult: (counter) => actionCreators.storeResult(counter),
   onDeleteResult: (resultId) => actionCreators.deleteResult(resultId),
-  onAddRandomToCounter: () => actionCreators.addRandomValue(),
-  onSubtractRandomFromCounter: () => actionCreators.subtractRandomValue(),
+
+  onAddRandomToCounter: () => actionAsyncCreators.addRandomValue(),
+  onSubtractRandomFromCounter: () => actionAsyncCreators.subtractRandomValue(),
 };

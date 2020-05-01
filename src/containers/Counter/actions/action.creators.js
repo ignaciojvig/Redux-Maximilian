@@ -1,5 +1,4 @@
 import * as actionTypes from "./action.types";
-import { counterAPIService } from "../services/counter.apiservice";
 
 export const increment = () => {
   return {
@@ -41,30 +40,16 @@ export const deleteResult = (resultId) => {
   };
 };
 
-const addRandomValueToCounter = (randomValue) => {
+export const addRandomValueToCounter = (randomValue) => {
   return {
     type: actionTypes.ADDRANDOM,
     random: randomValue,
   };
 };
 
-const subtractRandomValueFromCounter = (randomValue) => {
+export const subtractRandomValueFromCounter = (randomValue) => {
   return {
     type: actionTypes.SUBTRACTRANDOM,
     random: randomValue,
-  };
-};
-
-export const addRandomValue = () => {
-  return async (dispatch) => {
-    const randomValue = await counterAPIService.getRandomInteger();
-    dispatch(addRandomValueToCounter(randomValue.data));
-  };
-};
-
-export const subtractRandomValue = () => {
-  return async (dispatch) => {
-    const randomValue = await counterAPIService.getRandomInteger();
-    dispatch(subtractRandomValueFromCounter(randomValue.data));
   };
 };

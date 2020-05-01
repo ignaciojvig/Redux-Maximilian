@@ -1,6 +1,6 @@
 import cloneDeep from "lodash.clonedeep";
 
-export const updatedState = (previousState, updatedProperties) => {
+export const updateState = (previousState, updatedProperties) => {
   return {
     ...cloneDeep(previousState),
     ...updatedProperties,

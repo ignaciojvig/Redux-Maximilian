@@ -1,33 +1,39 @@
 import * as actionTypes from "../actions/action.types";
-import { updatedState } from "../../../store/utility";
+import { updateState } from "../../../helpers/";
 
 const initialState = {
-  counter: 0,
+  counterScore: 0,
+  loadingState: false,
 };
 
-const counterReducer = (state = initialState, action) => {
+const counterScoreReducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.INCREMENT:
-      return updatedState(state, { counter: state.counter + 1 });
+      return updateState(state, { counterScore: state.counterScore + 1 });
 
     case actionTypes.DECREMENT:
-      return updatedState(state, { counter: state.counter - 1 });
+      return updateState(state, { counterScore: state.counterScore - 1 });
 
     case actionTypes.ADDFIVE:
-      return updatedState(state, { counter: state.counter + action.value });
+      return updateState(state, { counterScore: state.counterScore + action.value });
 
     case actionTypes.SUBTRACTFIVE:
-      return updatedState(state, { counter: state.counter - action.value });
+      return updateState(state, { counterScore: state.counterScore - action.value });
 
     case actionTypes.ADDRANDOM:
-      return updatedState(state, { counter: state.counter + action.random });
+      return updateState(state, { counterScore: state.counterScore + action.random });
+
+    case actionTypes.ADDRANDOMLOADING:
+      return updateState(state, {
+        loadingState: action.loadingState,
+      });
 
     case actionTypes.SUBTRACTRANDOM:
-      return updatedState(state, { counter: state.counter - action.random });
+      return updateState(state, { counterScore: state.counterScore - action.random });
 
     default:
       return state;
   }
 };
 
-export default counterReducer;
+export default counterScoreReducer;
