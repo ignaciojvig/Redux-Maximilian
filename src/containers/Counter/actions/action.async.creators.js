@@ -7,9 +7,11 @@ import {
 } from "./action.creators";
 
 import * as actionTypes from "./action.types";
+import { loadingDispatch } from "../../../store/utility-actions/utility.actions.creators";
 
 export const addRandomValue = () => {
   return (dispatch) => {
+    dispatch(loadingDispatch(actionTypes.ADDRANDOMLOADING, true));
     from(counterAPIService.getRandomInteger())
       .pipe(
         loadingHandler(dispatch, actionTypes.ADDRANDOMLOADING),
@@ -21,6 +23,7 @@ export const addRandomValue = () => {
 
 export const subtractRandomValue = () => {
   return (dispatch) => {
+    dispatch(loadingDispatch(actionTypes.SUBTRACTRANDOMLOADING, true));
     from(counterAPIService.getRandomInteger())
       .pipe(
         loadingHandler(dispatch, actionTypes.SUBTRACTRANDOMLOADING),
