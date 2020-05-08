@@ -1,5 +1,6 @@
 import * as actionTypes from "../actions/action.types";
-import { updateState } from "../../../helpers/";
+
+import { createReducer } from "@reduxjs/toolkit";
 
 const initialState = {
   counterScore: 0,
@@ -7,49 +8,29 @@ const initialState = {
   subtractRandomLoadingState: false,
 };
 
-const counterScoreReducer = (state = initialState, action) => {
-  console.log(action);
-
-  switch (action.type) {
-    case actionTypes.INCREMENT:
-      return updateState(state, { counterScore: state.counterScore + 1 });
-
-    case actionTypes.DECREMENT:
-      return updateState(state, { counterScore: state.counterScore - 1 });
-
-    case actionTypes.ADDFIVE:
-      return updateState(state, {
-        counterScore: state.counterScore + action.payload.value,
-      });
-
-    case actionTypes.SUBTRACTFIVE:
-      return updateState(state, {
-        counterScore: state.counterScore - action.payload.value,
-      });
-
-    case actionTypes.ADDRANDOM:
-      return updateState(state, {
-        counterScore: state.counterScore + action.payload.random,
-      });
-
-    case actionTypes.ADDRANDOMLOADING:
-      return updateState(state, {
-        addRandomLoadingState: action.payload.loadingState,
-      });
-
-    case actionTypes.SUBTRACTRANDOM:
-      return updateState(state, {
-        counterScore: state.counterScore - action.payload.random,
-      });
-
-    case actionTypes.SUBTRACTRANDOMLOADING:
-      return updateState(state, {
-        subtractRandomLoadingState: action.payload.loadingState,
-      });
-
-    default:
-      return state;
-  }
-};
-
-export default counterScoreReducer;
+export const counterReducer = createReducer(initialState, {
+  [actionTypes.INCREMENT]: (state) => {
+    state.counterScore = state.counterScore + 1;
+  },
+  [actionTypes.DECREMENT]: (state) => {
+    state.counterScore = state.counterScore - 1;
+  },
+  [actionTypes.ADDFIVE]: (state, action) => {
+    state.counterScore = state.counterScore + action.payload.value;
+  },
+  [actionTypes.SUBTRACTFIVE]: (state, action) => {
+    state.counterScore = state.counterScore - action.payload.value;
+  },
+  [actionTypes.ADDRANDOM]: (state, action) => {
+    state.counterScore = state.counterScore + action.payload.random;
+  },
+  [actionTypes.ADDRANDOMLOADING]: (state, action) => {
+    state.addRandomLoadingState = action.payload.loadingState;
+  },
+  [actionTypes.SUBTRACTRANDOM]: (state, action) => {
+    state.counterScore = state.counterScore - action.payload.random;
+  },
+  [actionTypes.SUBTRACTRANDOMLOADING]: (state, action) => {
+    state.subtractRandomLoadingState = action.payload.loadingState;
+  },
+});
