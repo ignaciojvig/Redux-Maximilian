@@ -11,13 +11,13 @@ const resultReducer = (state = initialState, action) => {
       return updateState(state, {
         results: state.results.concat({
           id: new Date(),
-          storedValue: action.result,
+          storedValue: action.payload.result,
         }),
       });
 
     case actionTypes.DELETE_RESULT:
       return updateState(state, {
-        results: state.results.filter((result) => result.id !== action.id),
+        results: state.results.filter((result) => result.id !== action.payload.id),
       });
 
     default:

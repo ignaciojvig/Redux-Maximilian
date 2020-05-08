@@ -1,7 +1,7 @@
 import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import { actions } from "./actions/actions";
+import * as actions from "./actions/actions";
 
 import CounterOutput from "../../components/CounterOutput/CounterOutput";
 import { Button } from "antd";
@@ -39,14 +39,14 @@ export const Counter = () => {
 
         <Button
           type="primary"
-          onClick={() => dispatch(actions.onAddFiveToCounter())}
+          onClick={() => dispatch(actions.onAddFiveToCounter(5))}
         >
           Add 5
         </Button>
 
         <Button
           type="primary"
-          onClick={() => dispatch(actions.onSubtractFiveFromCounter())}
+          onClick={() => dispatch(actions.onSubtractFiveFromCounter(5))}
         >
           Subtract 5
         </Button>
