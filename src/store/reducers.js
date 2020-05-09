@@ -1,9 +1,9 @@
 import { combineReducers } from "redux";
 
-import { counterSlice } from "../containers/Counter/reducers/counter.reducer";
-import { resultReducer } from "../containers/Counter/reducers/result.reducer";
+import { counterSlice } from "../containers/Counter/counter.slice";
+import { resultSlice } from "../containers/Counter/result.slice";
 
 export const rootReducer = combineReducers({
   counter: counterSlice.reducer,
-  result: resultReducer,
+  result: resultSlice.reducer,
 });
