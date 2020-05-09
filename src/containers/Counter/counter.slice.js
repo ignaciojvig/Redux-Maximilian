@@ -8,25 +8,34 @@ const initialState = {
 };
 
 export const asyncActions = {
-  ADDRANDOM: createAsyncThunk("ADDRANDOM", async (loadingAction, thunkAPI) => {
-    thunkAPI.dispatch(loadingAction({ loadingState: true }));
+  ADDRANDOM: createAsyncThunk("ADDRANDOM", async (payload, thunkAPI) => {
+    thunkAPI.dispatch(
+      counterSlice.actions.ADDRANDOMLOADING({ loadingState: true })
+    );
 
     const response = await counterAPI.getRandomInteger();
 
-    thunkAPI.dispatch(loadingAction({ loadingState: false }));
+    thunkAPI.dispatch(
+      counterSlice.actions.ADDRANDOMLOADING({ loadingState: false })
+    );
 
     return {
       random: response.data,
     };
   }),
+
   SUBTRACTRANDOM: createAsyncThunk(
     "SUBTRACTRANDOM",
-    async (loadingAction, thunkAPI) => {
-      thunkAPI.dispatch(loadingAction({ loadingState: true }));
+    async (payload, thunkAPI) => {
+      thunkAPI.dispatch(
+        counterSlice.actions.SUBTRACTRANDOMLOADING({ loadingState: true })
+      );
 
       const response = await counterAPI.getRandomInteger();
 
-      thunkAPI.dispatch(loadingAction({ loadingState: false }));
+      thunkAPI.dispatch(
+        counterSlice.actions.SUBTRACTRANDOMLOADING({ loadingState: false })
+      );
 
       return {
         random: response.data,

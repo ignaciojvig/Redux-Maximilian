@@ -57,9 +57,7 @@ export const Counter = () => {
         <Button
           type="primary"
           loading={counterState.addRandomLoadingState}
-          onClick={() =>
-            dispatch(asyncActions.ADDRANDOM(counterActions.ADDRANDOMLOADING))
-          }
+          onClick={() => dispatch(asyncActions.ADDRANDOM())}
         >
           Async Add a Random Between 1-10
         </Button>
@@ -67,11 +65,7 @@ export const Counter = () => {
         <Button
           type="primary"
           loading={counterState.subtractRandomLoadingState}
-          onClick={() =>
-            dispatch(
-              asyncActions.SUBTRACTRANDOM(counterActions.SUBTRACTRANDOMLOADING)
-            )
-          }
+          onClick={() => dispatch(asyncActions.SUBTRACTRANDOM())}
         >
           Async Subtract a Random Between 1-10
         </Button>
