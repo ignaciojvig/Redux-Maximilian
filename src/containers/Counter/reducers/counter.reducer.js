@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-import { asyncActions } from "../actions/async.action.creators";
+import { asyncActions } from "../actions/async.actions";
 
 const initialState = {
   counterScore: 0,

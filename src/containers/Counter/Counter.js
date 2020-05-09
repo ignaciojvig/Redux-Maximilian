@@ -5,7 +5,7 @@ import { counterSlice } from "./reducers/counter.reducer";
 
 import CounterOutput from "../../components/CounterOutput/CounterOutput";
 import { Button } from "antd";
-import { asyncActions } from "./actions/async.action.creators";
+import { asyncActions } from "./actions/async.actions";
 
 export const Counter = () => {
   const dispatch = useDispatch();
