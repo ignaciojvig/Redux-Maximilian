@@ -1,13 +1,15 @@
 import React from "react";
 
 import { useDispatch, useSelector } from "react-redux";
-import * as actions from "./actions/actions";
+import { counterSlice } from "./reducers/counter.reducer";
 
 import CounterOutput from "../../components/CounterOutput/CounterOutput";
 import { Button } from "antd";
+import { asyncActions } from "./actions/async.action.creators";
 
 export const Counter = () => {
   const dispatch = useDispatch();
+  const { actions } = counterSlice;
 
   const counterState = useSelector((state) => state.counter);
   const storedResults = useSelector((state) => state.result.results);
@@ -23,30 +25,21 @@ export const Counter = () => {
           margin: "1em 0",
         }}
       >
-        <Button
-          type="primary"
-          onClick={() => dispatch(actions.onIncrementCounter())}
-        >
+        <Button type="primary" onClick={() => dispatch(actions.INCREMENT())}>
           Increment
         </Button>
 
-        <Button
-          type="primary"
-          onClick={() => dispatch(actions.onDecrementCounter())}
-        >
+        <Button type="primary" onClick={() => dispatch(actions.DECREMENT())}>
           Decrement
         </Button>
 
-        <Button
-          type="primary"
-          onClick={() => dispatch(actions.onAddFiveToCounter(5))}
-        >
+        <Button type="primary" onClick={() => dispatch(actions.ADDFIVE(5))}>
           Add 5
         </Button>
 
         <Button
           type="primary"
-          onClick={() => dispatch(actions.onSubtractFiveFromCounter(5))}
+          onClick={() => dispatch(actions.SUBTRACTFIVE(5))}
         >
           Subtract 5
         </Button>
@@ -54,7 +47,9 @@ export const Counter = () => {
         <Button
           type="primary"
           loading={counterState.addRandomLoadingState}
-          onClick={() => dispatch(actions.onAddRandomToCounter())}
+          onClick={() =>
+            dispatch(asyncActions.ADDRANDOM(actions.ADDRANDOMLOADING))
+          }
         >
           Async Add a Random Between 1-10
         </Button>
@@ -62,7 +57,9 @@ export const Counter = () => {
         <Button
           type="primary"
           loading={counterState.subtractRandomLoadingState}
-          onClick={() => dispatch(actions.onSubtractRandomFromCounter())}
+          onClick={() =>
+            dispatch(asyncActions.SUBTRACTRANDOM(actions.SUBTRACTRANDOMLOADING))
+          }
         >
           Async Subtract a Random Between 1-10
         </Button>
